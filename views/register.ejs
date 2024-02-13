@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  </head>
+  <body style="margin-inline: 400px; margin-top: 30px; background-image: url('/images/p7.jpg'); ">
+
+<div class="row">
+    <div class="col-md-12">
+      <form action="/register/" class="form-horizontal" role="form" method="post">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Name</label>
+          <input type="text" class="form-control" name="uname" placeholder="Enter Name" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="name" class="control-label">Employee Type</label>
+          <select class="form-control" name="etype" required>
+            <option value="hourly">Hourly</option>
+            <option value="fixed">Fixed</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Hourly Value</label>
+          <input type="number" class="form-control" name="hvalue" placeholder="Enter hourly value" required>
+         
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Total Hours</label>
+          <input type="number" class="form-control" name="Thours" placeholder="Enter Total Hours" required>
+    
+        </div>
+        <!--  <div class="form-group">
+          <label for="exampleInputEmail1">Total Amount</label>
+          <input type="number" class="form-control" name="Tamount" placeholder="Enter Total Amount">
+        </div>  -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

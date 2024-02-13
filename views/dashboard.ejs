@@ -1,0 +1,114 @@
+    <!DOCTYPE html>
+    <html>
+      <head>
+        
+        <title><%= title %></title>   
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <link rel='stylesheet' href='/stylesheets/style.css' />    
+        
+        
+      </head>
+      <body style="background-image: url('/images/pexels.jpg');">
+        
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">dashboard</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/upload">Upload Files </a>
+          
+              </li>
+              <li class="nav-item active " >
+                <a class="nav-link " href="/register">Register yourself</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/logout" style="margin-left: 840px;">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div class="container">
+          <h2 style="font-style: initial;text-align: center;padding-bottom: 48px;margin: 0px;font-family: cursive;"><%= title %></h2>
+          
+            <% if(success !='') {%>
+            <div class="alert alert-success">
+              <strong>Success!</strong> <%= success %>.
+            </div>
+            <% } %>
+            <h2  style="text-align: center;/* background-color: bisque; */font-style: inherit;margin-top: -15px;" > Filter Employee Records</h2>
+            <form action="/search" id="Employeeform"   class="form-inline" method="get">
+              
+              <div class="form-group mb-2">
+                <label for="name" class="control-label px-2">By Name</label>
+                <input type="text"class="form-control" name="filtrname" placeholder="Enter your Name">
+              </div>
+              <div class="form-group mb-2">
+                <label for="name" class="control-label px-2">By Email</label>
+                <input type="text"class="form-control" name="filtremail" placeholder="Enter your Email">
+              </div>
+              <div class="form-group mb-2">
+                <label for="name" class="control-label px-2">By Employee Type</label>
+                <select class="form-control" name="filtremptype">
+                  <option value="hourly">Hourly</option>
+                  <option value="fixed">Fixed</option>
+                </select>
+              </div>
+              <div class="form-group px-2">
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+              </div>
+            </form>
+        
+        </div>
+        
+        <div class="container">
+          <h1 style="font-family: math;"><%= title %></h1>
+          <div class="row">  
+            <div class="col-md-12">   
+              <div class="table-resposnive">
+                <table class="table table-striped table-primary">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Emp type</th>
+                      <th>Hourly Value</th>
+                      <th> Total Hours</th>
+                      <th>Total Amount</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <%if(records.length>0){%>
+                  <%records.forEach(function(row){%>
+                      <tr>
+                        <td><%= row.name %></td>
+                        <td><%= row.email%></td>
+                        <td><%= row.etype %></td>
+                        <td><%= row.hourlyvalue%></td>
+                        <td><%= row.totalHour %></td>
+                        <td><%= row.total %></td>
+                        <td><a class="btn btn-primary btn-xs" href="/edit/<%= row._id %>"><i class="fa fa-edit"></i></a>
+                          <a class="btn btn-danger btn-xs" href="/delete/dashboard/<%= row._id %>"><i class="fa fa-trash" > </i></a>  </td>
+                      </tr>
+                  <%  })}else{%>
+                    <tr>
+                      <td colspan="6">No records found</td>
+                    </tr>
+                  <%}%>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+      </body>
+    </html>
+    

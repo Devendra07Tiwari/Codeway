@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+        <body style="
+        margin-top: 50px;
+        
+        
+        background-image: url('/images/p7.jpg');">
+       
+
+       
+      <div class="container" style="width: 550px;">
+      <div class="row">
+        <div class="panel-heading">
+            <div class="panel-title" style="
+            text-align: center;
+            font-size: xx-large;
+            background-color: antiquewhite;
+            text-decoration: underline;
+            font-style: inherit;
+        "><%=title %></div>
+        </div>
+        <div class="col-md-12">
+          
+          <form action="/update" class="form-horizontal" role="form" method="post">
+            <input type="hidden" name="id" value="<%= records._id %>">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Name</label>
+              <input type="text" class="form-control" name="uname" value="<%= records.name %>" placeholder="Enter Name">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" name="email" value="<%= records.email %>"placeholder="Enter email">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="name" class="control-label">Employee Type</label>
+              <select class="form-control" name="etype">
+                <option value="hourly"<% if(records.etype=="hourly"){%> selected <% } %> >Hourly</option>
+                <option value="fixed"<% if(records.etype=="fixed"){%> selected <% } %> >Fixed</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Hourly Value</label>
+              <input type="number" class="form-control" name="hvalue" value="<%= records.hourlyvalue %>" placeholder="Enter hourly value">
+             
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Total Hours</label>
+              <input type="number" class="form-control" name="Thours" value="<%= records.totalHour %>" placeholder="Enter Total Hours">
+        
+            </div>
+           <!--  <div class="form-group">
+              <label for="exampleInputEmail1">Total Amount</label>
+              <input type="number" class="form-control" name="Tamount" placeholder="Enter Total Amount">
+            </div> -->
+            <button type="update" class="btn btn-primary">Update</button>
+          </form>
+        </div>
+      </div>
+      </div>
+    
+
+  </body>
+</html>

@@ -1,0 +1,40 @@
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title><%= title %></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+      
+      </head>
+      <body style="margin-inline: 400px; margin-top: 50px; background-image: url('/images/p2.jpg');"">
+      
+      
+
+    <div class="row">
+      <h2 ><%= title %></h2>
+        <div class="col-md-12">
+          <form action="/" class="form-horizontal" role="form" method="post">
+            <% if(msg !=''){ %>
+              <div id="signupalert" class="alert alert-danger">
+                <p> <%= msg %> </p>
+              </div>
+              <% } %>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+              <label for="password">password</label>
+              <input type="password" class="form-control" name="password" placeholder="Enter your password" required>
+              <small id="emailHelp" class="form-text text-muted">We'll never share your password with anyone else.</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+            <p>If you don't have account <a href="/signup">Create account</a> </p>
+          </form>
+        </div>
+      </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    </body>
+    </html>
