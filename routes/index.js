@@ -68,19 +68,21 @@ router.use(express.static(__dirname+"./public/"));
         var data = await empModel.find({});
           res.render('register', { title: 'Employee Records',records:data, success: '' });
         });
-      router.post('/register',async function(req,res,next){
+      router.post('/register',upload,async function(req,res,next){
         var  empDetails =new empModel({
           name:req.body.uname, 
           email:req.body.email, 
           etype:req.body.etype,
           hourlyvalue:req.body.hvalue,
           totalHour:req.body.Thours,
-          total:parseInt(req.body.hvalue)*parseInt(req.body.Thours)
+          total:parseInt(req.body.hvalue)*parseInt(req.body.Thours),
+          Image:req.file.filename,
         });
 
             empDetails.save().then(async (data)=>{
               var data = await empModel.find({});
-              res.render('dashboard', { title: 'Employee Records',records:data,success:"Record Inserted Successfully" });
+              //res.render('dashboard', { title: 'Employee Records',records:data,success:"Record Inserted Successfully" });
+              return res.redirect('/dashboard');
             });
         //console.log(empDetails);  
         }); 
@@ -120,10 +122,10 @@ router.use(express.static(__dirname+"./public/"));
               console.log(localStorage.getItem('userDeatils'));
               res.redirect('dashboard');
             }else{
-              res.render('index', { title: 'Employee Management system',msg:'Email or password is encorrect'});
+              res.render('index', { title: 'Employee Management system',msg:'Email or password is incorrect'});
             }
               }else{
-            res.render('index', { title: 'Employee Management system',msg:'Email or password is encorrect'});
+            res.render('index', { title: 'Employee Management system',msg:'Email or password is incorrect'});
           }
           
           
@@ -197,8 +199,8 @@ router.use(express.static(__dirname+"./public/"));
           var del = empModel.findByIdAndDelete(id);
           var data = await del.exec({});
           var data = await empModel.find({});
-          
-          res.render('dashboard', { title: 'Employee Records',records:data,success:"Record deleted Successfully" });
+          //res.render('dashboard', { title: 'Employee Records',records:data,success:"Record deleted Successfully" });
+          return res.redirect('/dashboard');
         });
 //Edit         
       router.get('/edit/:id',validateUser, async function(req, res, next) {
@@ -209,7 +211,7 @@ router.use(express.static(__dirname+"./public/"));
             res.render('edit', { title: 'Edit Employee Records',records:data });
         }); 
 //update           
-      router.post('/update', async function(req, res, next) {
+      router.post('/update/',upload, async function(req, res, next) {
             //var id=req.params.id;
             var update = empModel.findByIdAndUpdate(req.body.id,{
             name:req.body.uname,
@@ -217,11 +219,13 @@ router.use(express.static(__dirname+"./public/"));
             etype:req.body.etype,
             hourlyvalue:req.body.hvalue,
             totalHour:req.body.Thours,
-            total:parseInt(req.body.hvalue) * parseInt(req.body.Thours)
+            total:parseInt(req.body.hvalue) * parseInt(req.body.Thours),
+            Image:req.file.filename, 
           });
             var data = await update.exec({});
             // console.log(update);
             var data = await empModel.find({});
-            res.render('dashboard', { title: 'Employee Records',records:data,success:"Record updated Successfully" });
+            //res.render('dashboard', { title: 'Employee Records',records:data,success:"Record updated Successfully" });
+            return res.redirect('/dashboard');
         }); 
       module.exports = router;

@@ -81,6 +81,7 @@
                       <th>Hourly Value</th>
                       <th> Total Hours</th>
                       <th>Total Amount</th>
+                      <th>Profile Image</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -93,6 +94,10 @@
                         <td><%= row.hourlyvalue%></td>
                         <td><%= row.totalHour %></td>
                         <td><%= row.total %></td>
+                        <td>
+                          <% if(row.Image){ %>
+                          <img src="./uploads/<%= row.Image %>" alt="profile image" width="80px"></td>
+                         <% } %>
                         <td><a class="btn btn-primary btn-xs" href="/edit/<%= row._id %>"><i class="fa fa-edit"></i></a>
                           <a class="btn btn-danger btn-xs" href="/delete/<%= row._id %>"><i class="fa fa-trash" > </i></a>  </td>
                       </tr>
